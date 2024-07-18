@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Job } from '../job/job.entity';
+import { Job } from '../job';
 
 @Entity()
 export class Appliance {
@@ -15,6 +15,6 @@ export class Appliance {
   @Column()
   applianceText: string;
 
-  @ManyToOne(() => Job, (job) => job.appliances)
+  @ManyToOne(() => Job, (job) => job.appliances, { onDelete: 'CASCADE' })
   job: Job;
 }

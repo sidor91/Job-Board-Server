@@ -5,8 +5,8 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { Company } from '../company/company.entity';
-import { Appliance } from '../appliance/appliance.entity';
+import { Company } from '../company';
+import { Appliance } from '../appliance';
 
 @Entity()
 export class Job {
@@ -19,7 +19,7 @@ export class Job {
   @Column()
   description: string;
 
-  @ManyToOne(() => Company, (company) => company.jobs)
+  @ManyToOne(() => Company, (company) => company.jobs, { onDelete: 'CASCADE' })
   company: Company;
 
   @OneToMany(() => Appliance, (appliance) => appliance.job)
