@@ -10,8 +10,16 @@ export class JobService {
     private readonly companyRepository: CompanyRepository,
   ) {}
 
-  async getAllJobs() {
-    const data = await this.jobRepository.findAll();
+  async getJobById(id: number) {
+    const job = await this.jobRepository.findOneById(id);
+    if (!job) {
+      throw new NotFoundException(`Job with id ${id} not found.`);
+    }
+    return { success: true, data: job };
+  }
+
+  async getAllJobs({ page, limit }: {page: number, limit: number}) {
+    const data = await this.jobRepository.findAll({ page, limit });
     return { success: true, data };
   }
 

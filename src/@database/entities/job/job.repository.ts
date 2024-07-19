@@ -17,8 +17,19 @@ export class JobRepository {
     });
   }
 
-  async findAll(): Promise<Job[]> {
-    return await this.repository.find({ relations: ['company', 'appliances'] });
+  async findAll({
+    page,
+    limit,
+  }: {
+    page: number;
+    limit: number;
+    }): Promise<[Job[], number]> {
+     const skip = (page - 1) * limit;
+    return await this.repository.findAndCount({
+      relations: ['company', 'appliances'],
+      skip,
+      take: limit,
+    });
   }
 
   async create(jobDto: CreateJobInDatabaseDto): Promise<Job> {
