@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseFilters } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { Company } from 'src/@database/entities/company';
+import { UniqueConstraintFilter } from 'src/utils/filters/unique-constraint.filter';
 
 @Controller('company')
+@UseFilters(UniqueConstraintFilter)
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
