@@ -1,5 +1,5 @@
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
-import { Job, JobRepository } from 'src/@database/entities/job';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { JobRepository } from 'src/@database/entities/job';
 import { CompanyRepository } from 'src/@database/entities/company';
 import { CreateJobDto } from 'src/@database/entities/job';
 
@@ -16,20 +16,20 @@ export class JobService {
   }
 
   async createJob(createJobDto: CreateJobDto) {
-   const { name, description, companyId } = createJobDto;
-   const company = await this.companyRepository.findOneById(companyId);
-   if (!company) {
-     throw new NotFoundException(
-       `Company with id ${createJobDto.companyId} does not exist.`,
-     );
-   }
+    const { name, description, companyId } = createJobDto;
+    const company = await this.companyRepository.findOneById(companyId);
+    if (!company) {
+      throw new NotFoundException(
+        `Company with id ${createJobDto.companyId} does not exist.`,
+      );
+    }
 
-   const data = await this.jobRepository.create({
-     name,
-     description,
-     company,
-   });
-   return { success: true, data };
+    const data = await this.jobRepository.create({
+      name,
+      description,
+      company,
+    });
+    return { success: true, data };
   }
 
   async deleteJob(id: number) {

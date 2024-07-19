@@ -1,5 +1,5 @@
-import { Appliance } from "./appliance.entity";
-import { ApplianceRepository } from "./appliance.repository";
+import { Appliance } from './appliance.entity';
+import { ApplianceRepository } from './appliance.repository';
 import {
   CreateApplicationDto,
   CreateApplicationInDatabaseDto,

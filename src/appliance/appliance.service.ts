@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import {
-  Appliance,
   CreateApplicationDto,
   ApplianceRepository,
 } from 'src/@database/entities/appliance';

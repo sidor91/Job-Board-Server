@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Company, CompanyRepository } from 'src/@database/entities/company'
+import { Company, CompanyRepository } from 'src/@database/entities/company';
 
 @Injectable()
 export class CompanyService {
   constructor(private readonly companyRepository: CompanyRepository) {}
 
   async getCompanyById(id: number): Promise<Company> {
-     return await this.companyRepository.findOneById(id)
+    return await this.companyRepository.findOneById(id);
   }
 
   async getAllCompanies(): Promise<Company[]> {

@@ -6,7 +6,7 @@ import { SendMailDto } from './dto/send-mail.dto';
 export class MailerService {
   private readonly logger = new Logger(MailerService.name);
   async sendMail(dto: SendMailDto) {
-    const { name, from, to, subject, text} = dto;
+    const { name, from, to, subject, text } = dto;
     try {
       const info = await transporter.sendMail({
         from: `${name} <${from}>`,

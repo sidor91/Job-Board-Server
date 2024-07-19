@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { JobService } from './job.service';
-import { CreateJobDto, Job } from 'src/@database/entities/job';
+import { CreateJobDto } from 'src/@database/entities/job';
 
 @Controller('job')
 export class JobController {

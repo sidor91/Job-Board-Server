@@ -10,7 +10,13 @@ import { MailerService } from './mailer/mailer.service';
 import { MailerModule } from './mailer/mailer.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), CompanyModule, JobModule, ApplianceModule, MailerModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
+    CompanyModule,
+    JobModule,
+    ApplianceModule,
+    MailerModule,
+  ],
   controllers: [AppController],
   providers: [AppService, MailerService],
 })

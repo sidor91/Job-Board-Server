@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { Company } from 'src/@database/entities/company';
 
