@@ -9,6 +9,9 @@ export class Company {
   @Column({ unique: true })
   name: string;
 
+  @Column()
+  email: string;
+
   @OneToMany(() => Job, (job) => job.company)
   jobs: Job[];
 }

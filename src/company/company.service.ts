@@ -5,6 +5,10 @@ import { Company, CompanyRepository } from 'src/@database/entities/company'
 export class CompanyService {
   constructor(private readonly companyRepository: CompanyRepository) {}
 
+  async getCompanyById(id: number): Promise<Company> {
+     return await this.companyRepository.findOneById(id)
+  }
+
   async getAllCompanies(): Promise<Company[]> {
     return await this.companyRepository.findAll();
   }

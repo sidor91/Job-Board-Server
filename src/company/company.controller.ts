@@ -1,14 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, UseFilters } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { Company } from 'src/@database/entities/company';
-import { UniqueConstraintFilter } from 'src/utils/filters/unique-constraint.filter';
 
 @Controller('company')
-@UseFilters(UniqueConstraintFilter)
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
-  @Get()
+  @Get('all')
   async getAllCompanies(): Promise<Company[]> {
     return await this.companyService.getAllCompanies();
   }
@@ -16,6 +14,11 @@ export class CompanyController {
   @Post()
   async createCompany(@Body() company: Company): Promise<Company> {
     return await this.companyService.createCompany(company);
+  }
+
+  @Get(':id')
+  async getCompanyById(@Param('id') id: number): Promise<Company> {
+    return await this.companyService.getCompanyById(id);
   }
 
   @Delete(':id')

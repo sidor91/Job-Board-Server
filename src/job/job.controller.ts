@@ -7,17 +7,17 @@ export class JobController {
   constructor(private readonly jobService: JobService) {}
 
   @Get()
-  async getAllJobs(): Promise<Job[]> {
+  async getAllJobs() {
     return await this.jobService.getAllJobs();
   }
 
   @Post()
-  async createJob(@Body() createJobDto: CreateJobDto): Promise<Job> {
+  async createJob(@Body() createJobDto: CreateJobDto) {
     return await this.jobService.createJob(createJobDto);
   }
 
   @Delete(':id')
-  async deleteJob(@Param('id') id: number): Promise<void> {
-    await this.jobService.deleteJob(id);
+  async deleteJob(@Param('id') id: number) {
+    return await this.jobService.deleteJob(id);
   }
 }

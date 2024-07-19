@@ -9,7 +9,7 @@ export class ApplianceController {
   @Post()
   async createAppliance(
     @Body() createApplicationDto: CreateApplicationDto,
-  ): Promise<Appliance> {
+  ) {
     return await this.applianceService.createAppliance(createApplicationDto);
   }
 }
