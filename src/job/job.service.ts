@@ -32,11 +32,19 @@ export class JobService {
       );
     }
 
-    const data = await this.jobRepository.create({
-      name,
-      description,
-      company,
-    });
+    const isJobExists = company.jobs.find(
+      ({ name: existingJobName }) => existingJobName === name
+    );
+
+    if (isJobExists) {
+      throw new Error(`The job with name ${name} and company ${company.name} is already exists`)
+    }
+
+      const data = await this.jobRepository.create({
+        name,
+        description,
+        company,
+      });
     return { success: true, data };
   }
 

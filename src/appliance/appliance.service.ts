@@ -24,12 +24,18 @@ export class ApplianceService {
       );
     }
 
-    const application = await this.applianceRepository.create({
-      userName,
-      userEmail,
-      applianceText,
-      job,
-    });
+    const isApplianceExist = job.appliances.find(
+      ({ userEmail: email }) => email === userEmail,
+    );
+
+    if (isApplianceExist) return { success: false, message: 'You have already applied to this vacancy' };
+
+      const application = await this.applianceRepository.create({
+        userName,
+        userEmail,
+        applianceText,
+        job,
+      });
 
     await this.mailerService.sendMail({
       name: userName,
